@@ -1,5 +1,7 @@
 package ar.com.ada.api.moverest.entities;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -12,31 +14,38 @@ public class Alquiler extends Servicio {
     @Column(name = "alquiler_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer alquilerId;
+    private List <Inmueble> inmueblesDeAlquiler;
 
     public String getCosto() { 
         return super.getCosto();
     }
-
-    public String getNombreServicio() {
-        return super.getNombreServicio();
-    }
-
+ 
     public void setCosto(String costo) {
         super.setCosto(costo);
-    }
-
-    public void setNombreServicio(String nombreServicio) {
-        super.setNombreServicio(nombreServicio);
     }
 
     public Alquiler() {
     }
 
-    public Alquiler(String costo, String nombreServicio, Integer alquilerId) {
-        super(costo, nombreServicio);
+    public Alquiler(String costo, Integer alquilerId) {
+        super(costo);
         this.alquilerId = alquilerId;
     }
-    
 
+    public Integer getAlquilerId() {
+        return alquilerId;
+    }
+
+    public void setAlquilerId(Integer alquilerId) {
+        this.alquilerId = alquilerId;
+    }
+
+    public List<Inmueble> getInmueblesDeAlquiler() {
+        return inmueblesDeAlquiler;
+    }
+
+    public void setInmueblesDeAlquiler(List<Inmueble> inmueblesDeAlquiler) {
+        this.inmueblesDeAlquiler = inmueblesDeAlquiler;
+    }
     
 }

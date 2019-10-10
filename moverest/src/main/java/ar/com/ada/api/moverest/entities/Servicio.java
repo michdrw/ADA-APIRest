@@ -6,7 +6,6 @@ package ar.com.ada.api.moverest.entities;
 
 public abstract class Servicio {
     private String costo;
-    private String nombreServicio;
 
     public String getCosto() {
         return costo;
@@ -16,19 +15,10 @@ public abstract class Servicio {
         this.costo = costo;
     }
 
-    public String getNombreServicio() {
-        return nombreServicio;
-    }
-
-    public void setNombreServicio(String nombreServicio) {
-        this.nombreServicio = nombreServicio;
-    }
-
     public Servicio() {
     }
 
-    public Servicio(String costo, String nombreServicio) {
+    public Servicio(String costo) {
         this.costo = costo;
-        this.nombreServicio = nombreServicio;
     }
 }
