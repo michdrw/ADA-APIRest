@@ -24,6 +24,10 @@ public class Inmueble {
     private String tipoDeInmueble;
     private String estado;
 
+    @ManyToOne 
+    @JoinColumn(name = "inmobiliaria_id", referencedColumnName = "inmobiliaria_id") 
+    private Inmobiliaria inmobiliaria;
+
     public String getDireccion() {
         return direccion;
     }
