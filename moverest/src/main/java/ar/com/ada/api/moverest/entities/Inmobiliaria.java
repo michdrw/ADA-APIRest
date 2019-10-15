@@ -1,8 +1,10 @@
 package ar.com.ada.api.moverest.entities;
 
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.*;
 
 /**
  * Inmobiliaria
@@ -19,8 +21,13 @@ public class Inmobiliaria {
     private List <Locador> listaLocadores;
     private List <Locatario> listaLocatarios;
 
+    @OneToMany (mappedBy = "inmobiliaria", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Inmueble> inmuebles = new ArrayList<Inmueble>();
+
     public Inmobiliaria() {
     }
+
 
     public Integer getInmobiliariaId() {
         return inmobiliariaId;
