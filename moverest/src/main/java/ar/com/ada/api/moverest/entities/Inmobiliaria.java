@@ -1,6 +1,6 @@
 package ar.com.ada.api.moverest.entities;
 
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.*;
 

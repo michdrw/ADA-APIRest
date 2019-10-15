@@ -18,7 +18,7 @@ public class UsuarioService {
     @Autowired
     PersonaService personaService;
 
-    public int crearUsuario(String nombre, Integer edad, String tipoIdentificacion, int nroIdentificacion, String email, String password){
+    public int crearUsuario(String nombre, int edad, String tipoIdentificacion, int nroIdentificacion, String email, String password){
     
         Usuario u = new Usuario();
         u.setEmail(email);
@@ -34,4 +34,6 @@ public class UsuarioService {
         p.setUsuario(u);
         personaService.save(p);
 
+        return u.getUsuarioId();
+    }
 }

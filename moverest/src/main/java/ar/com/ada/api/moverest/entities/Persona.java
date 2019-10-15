@@ -71,6 +71,15 @@ public class Persona {
     public void setNroIdentificacion(int nroIdentificacion) {
         this.nroIdentificacion = nroIdentificacion;
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+        this.usuario.setPersona(this);
+    }
     
     
 }
