@@ -14,6 +14,8 @@ public class InmobiliariaService {
     @Autowired
     InmobiliariaRepository repoInmobiliaria;
 
-    
+    public void crearPublicacion(String ubicacion, String direccion, int ambientes,String amenities, String instalaciones, double superficie, double precio, String moneda, String tipoInmueble) {
+        
+    }
     
 }
