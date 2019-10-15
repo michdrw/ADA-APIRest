@@ -23,10 +23,6 @@ public class Locador extends Persona {
         this.locadorId = locadorId;
     }
 
-    public String getContactoEmail() {
-        return super.getContactoEmail();
-    }
-
     public int getEdad() {
         return super.getEdad();
     }
@@ -37,10 +33,6 @@ public class Locador extends Persona {
 
     public String getTipoIdentificacion() {
         return super.getTipoIdentificacion();
-    }
-
-    public void setContactoEmail(String contactoEmail) {
-        super.setContactoEmail(contactoEmail);
     }
 
     public void setEdad(int edad) {

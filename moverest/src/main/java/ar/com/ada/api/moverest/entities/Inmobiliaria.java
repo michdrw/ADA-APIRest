@@ -4,7 +4,8 @@ import java.util.*;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * Inmobiliaria
@@ -16,7 +17,6 @@ public class Inmobiliaria {
     @Column(name = "inmobiliaria_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer inmobiliariaId;
-    private String contactoEmail;
     private List <Inmueble> catalogoInmuebles; 
     private List <Locador> listaLocadores;
     private List <Locatario> listaLocatarios;
@@ -35,14 +35,6 @@ public class Inmobiliaria {
 
     public void setInmobiliariaId(Integer inmobiliariaId) {
         this.inmobiliariaId = inmobiliariaId;
-    }
-
-    public String getContactoEmail() {
-        return contactoEmail;
-    }
-
-    public void setContactoEmail(String contactoEmail) {
-        this.contactoEmail = contactoEmail;
     }
 
     public List<Inmueble> getCatalogoInmuebles() {

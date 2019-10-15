@@ -20,7 +20,7 @@ public class Inmueble {
     private double superficie;
     private double precio;
     private String moneda;
-    @Column(name = "tipo_de_inmueble")
+    @Column(name = "tipo_inmueble")
     private String tipoDeInmueble;
     private String estado;
 

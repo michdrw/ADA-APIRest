@@ -28,7 +28,6 @@ public class UsuarioService {
 
         Persona p = new Persona();
         p.setNombre(nombre);
-        p.setContactoEmail(u.getEmail());
         p.setTipoIdentificacion(tipoIdentificacion);
         p.setEdad(edad);
         p.setUsuario(u);

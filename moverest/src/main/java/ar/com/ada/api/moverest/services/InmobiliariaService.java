@@ -13,5 +13,7 @@ public class InmobiliariaService {
 
     @Autowired
     InmobiliariaRepository repoInmobiliaria;
+
+    
     
 }
