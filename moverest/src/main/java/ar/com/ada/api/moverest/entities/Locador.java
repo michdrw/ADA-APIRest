@@ -27,7 +27,7 @@ public class Locador extends Persona {
         return super.getContactoEmail();
     }
 
-    public String getEdad() {
+    public int getEdad() {
         return super.getEdad();
     }
 
@@ -35,15 +35,15 @@ public class Locador extends Persona {
         return super.getNombre();
     }
 
-    public String getTipoDeIdentificacion() {
-        return super.getTipoDeIdentificacion();
+    public String getTipoIdentificacion() {
+        return super.getTipoIdentificacion();
     }
 
     public void setContactoEmail(String contactoEmail) {
         super.setContactoEmail(contactoEmail);
     }
 
-    public void setEdad(String edad) {
+    public void setEdad(int edad) {
         super.setEdad(edad);
     }
 
@@ -51,8 +51,8 @@ public class Locador extends Persona {
         super.setNombre(nombre);
     }
 
-    public void setTipoDeIdentificacion(String tipoDeIdentificacion) {
-        super.setTipoDeIdentificacion(tipoDeIdentificacion);
+    public void setTipoIdentificacion(String tipoIdentificacion) {
+        super.setTipoIdentificacion(tipoIdentificacion);
     }
 
     public Integer getLocadorId() {

@@ -2,6 +2,8 @@ package ar.com.ada.api.moverest.entities;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Usuario
  */
@@ -15,6 +17,11 @@ public class Usuario {
     private String email;
     private String username;
     private String password;
+
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "persona_id", referencedColumnName = "persona_id")
+    private Persona persona;
 
     public Usuario() {
     }
