@@ -13,9 +13,13 @@ public class Persona {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer personaId;
     private String nombre;
-    private String edad;
-    private String tipoDeIdentificacion;
+    private int edad;
+    private String tipoIdentificacion;
+    private int nroIdentificacion;
     private String contactoEmail;
+
+    @OneToOne( mappedBy = "persona", cascade = CascadeType.ALL)
+    private Usuario usuario;
 
     public Integer getPersonaId() {
         return personaId;
@@ -33,20 +37,20 @@ public class Persona {
         this.nombre = nombre;
     }
 
-    public String getEdad() {
+    public int getEdad() {
         return edad;
     }
 
-    public void setEdad(String edad) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
 
-    public String getTipoDeIdentificacion() {
-        return tipoDeIdentificacion;
+    public String getTipoIdentificacion() {
+        return tipoIdentificacion;
     }
 
-    public void setTipoDeIdentificacion(String tipoDeIdentificacion) {
-        this.tipoDeIdentificacion = tipoDeIdentificacion;
+    public void setTipoIdentificacion(String tipoIdentificacion) {
+        this.tipoIdentificacion = tipoIdentificacion;
     }
 
     public String getContactoEmail() {
@@ -58,6 +62,14 @@ public class Persona {
     }
 
     public Persona() {
+    }
+
+    public int getNroIdentificacion() {
+        return nroIdentificacion;
+    }
+
+    public void setNroIdentificacion(int nroIdentificacion) {
+        this.nroIdentificacion = nroIdentificacion;
     }
     
     
