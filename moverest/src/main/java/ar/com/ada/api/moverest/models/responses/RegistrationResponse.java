@@ -1,4 +1,4 @@
-package ar.com.ada.api.moverest.models;
+package ar.com.ada.api.moverest.models.responses;
 
 /**
  * RegistrationResponse

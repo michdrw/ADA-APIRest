@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.*;
 
-import ar.com.ada.api.moverest.models.RegistrationRequest;
-import ar.com.ada.api.moverest.models.RegistrationResponse;
+import ar.com.ada.api.moverest.models.requests.RegistrationRequest;
+import ar.com.ada.api.moverest.models.responses.RegistrationResponse;
 import ar.com.ada.api.moverest.services.UsuarioService;
 
 /**

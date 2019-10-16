@@ -16,6 +16,10 @@ public class Reserva extends Servicio {
     private Integer reservaId;
     private List <Inmueble> inmueblesReservados;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
+    private Usuario usuario;
+
     public Integer getReservaId() {
         return reservaId;
     }

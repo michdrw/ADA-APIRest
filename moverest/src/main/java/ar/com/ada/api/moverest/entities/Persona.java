@@ -14,9 +14,10 @@ public class Persona {
     private Integer personaId;
     private String nombre;
     private int edad;
+    @Column(name = "tipo_identificacion")
     private String tipoIdentificacion;
+    @Column(name = "nro_identificacion")
     private int nroIdentificacion;
-    private String contactoEmail;
 
     @OneToOne( mappedBy = "persona", cascade = CascadeType.ALL)
     private Usuario usuario;
@@ -53,14 +54,6 @@ public class Persona {
         this.tipoIdentificacion = tipoIdentificacion;
     }
 
-    public String getContactoEmail() {
-        return contactoEmail;
-    }
-
-    public void setContactoEmail(String contactoEmail) {
-        this.contactoEmail = contactoEmail;
-    }
-
     public Persona() {
     }
 
@@ -70,6 +63,15 @@ public class Persona {
 
     public void setNroIdentificacion(int nroIdentificacion) {
         this.nroIdentificacion = nroIdentificacion;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+        this.usuario.setPersona(this);
     }
     
     public void setUsuario(Usuario usuario) {

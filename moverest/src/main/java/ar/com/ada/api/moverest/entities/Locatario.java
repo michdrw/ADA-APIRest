@@ -24,10 +24,6 @@ public class Locatario extends Persona {
         this.locatarioId = locatarioId;
     }
     
-    public String getContactoEmail() {
-        return super.getContactoEmail();
-    }
-
     public int getEdad() {
         return super.getEdad();
     }
@@ -39,11 +35,7 @@ public class Locatario extends Persona {
     public String getTipoIdentificacion() {
         return super.getTipoIdentificacion();
     }
-
-    public void setContactoEmail(String contactoEmail) {
-        super.setContactoEmail(contactoEmail);
-    }
-
+    
     public void setEdad(int edad) {
         super.setEdad(edad);
     }

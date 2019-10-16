@@ -23,6 +23,10 @@ public class Usuario {
     @JoinColumn(name = "persona_id", referencedColumnName = "persona_id")
     private Persona persona;
 
+    @OneToMany (mappedBy = "reserva", cascade = CascadeType.ALL)
+    private Reserva reserva;
+
+
     public Usuario() {
     }
 
@@ -56,6 +60,22 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+    public Reserva getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
     }
     
     
