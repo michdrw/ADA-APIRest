@@ -4,7 +4,8 @@ import java.util.*;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * Inmobiliaria

@@ -72,5 +72,7 @@ public class Persona {
         this.nroIdentificacion = nroIdentificacion;
     }
     
-    
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }
