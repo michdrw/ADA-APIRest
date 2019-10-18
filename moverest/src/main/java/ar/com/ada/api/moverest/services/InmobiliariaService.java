@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.moverest.entities.Inmobiliaria;
-import ar.com.ada.api.moverest.entities.Persona;
 import ar.com.ada.api.moverest.repositories.InmobiliariaRepository;
 
 /**
