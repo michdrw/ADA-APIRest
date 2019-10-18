@@ -21,7 +21,7 @@ public class Inmueble {
     private double precio;
     private String moneda;
     @Column(name = "tipo_inmueble")
-    private String tipoDeInmueble;
+    private String tipoInmueble;
     private String estado;
 
     @ManyToOne 
@@ -92,12 +92,12 @@ public class Inmueble {
         this.moneda = moneda;
     }
 
-    public String getTipoDeInmueble() {
-        return tipoDeInmueble;
+    public String getTipoInmueble() {
+        return tipoInmueble;
     }
 
-    public void setTipoDeInmueble(String tipoDeInmueble) {
-        this.tipoDeInmueble = tipoDeInmueble;
+    public void setTipoInmueble(String tipoInmueble) {
+        this.tipoInmueble = tipoInmueble;
     }
 
     public String getEstado() {
@@ -117,6 +117,14 @@ public class Inmueble {
     }
 
     public Inmueble() {
+    }
+
+    public Inmobiliaria getInmobiliaria() {
+        return inmobiliaria;
+    }
+
+    public void setInmobiliaria(Inmobiliaria inmobiliaria) {
+        this.inmobiliaria = inmobiliaria;
     }
 
     

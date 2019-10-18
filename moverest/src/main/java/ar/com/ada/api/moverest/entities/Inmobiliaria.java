@@ -1,8 +1,17 @@
 package ar.com.ada.api.moverest.entities;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -24,6 +33,9 @@ public class Inmobiliaria {
     @OneToMany (mappedBy = "inmobiliaria", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Inmueble> inmuebles = new ArrayList<Inmueble>();
+
+    @OneToOne( mappedBy = "inmobiliaria", cascade = CascadeType.ALL)
+    private Usuario usuario;
 
     public Inmobiliaria() {
     }
@@ -60,6 +72,26 @@ public class Inmobiliaria {
     public void setListaLocatarios(List<Locatario> listaLocatarios) {
         this.listaLocatarios = listaLocatarios;
     }
-    
+
+    public List<Inmueble> getInmuebles() {
+        return inmuebles;
+    }
+
+    public void setInmuebles(List<Inmueble> inmuebles) {
+        this.inmuebles = inmuebles;
+    }
+     
+    public void agregarInmueble(Inmueble i) {
+        i.setInmobiliaria(this);
+        inmuebles.add(i);
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
     
 }

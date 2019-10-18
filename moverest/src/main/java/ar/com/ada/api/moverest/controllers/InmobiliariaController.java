@@ -18,16 +18,5 @@ public class InmobiliariaController {
     @Autowired
     InmobiliariaService inmobiliariaService;
 
-    @PostMapping("publicacion")
-    public PublicacionResponse postRegisterUser(@RequestBody PublicacionRequest req){
-
-        PublicacionResponse pr = new PublicacionResponse();
-        inmobiliariaService.crearPublicacion(req.ubicacion, req.direccion, req.ambientes, req.amenities, req.instalaciones, req.superficie, req.precio, req.moneda, req.tipoInmueble);
-
-        pr.isOk = true;
-        pr.message = "Inmueble publicado con exito";
-
-        return pr;
-
-    }
+    
 }
