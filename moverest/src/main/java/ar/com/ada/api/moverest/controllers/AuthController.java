@@ -22,7 +22,7 @@ public class AuthController {
 
 
         RegistrationResponse r = new RegistrationResponse();
-        int usuarioCreadoId = usuarioService.crearUsuario(req.nombre, req.edad, req.tipoIdentificacion, req.nroIdentificacion, req.email, req.password);
+        int usuarioCreadoId = usuarioService.crearUsuario(req.tipo, req.personaData.nombre, req.personaData.edad, req.personaData.tipoIdentificacion, req.personaData.nroIdentificacion, req.email, req.password);
         
 
         r.isOk = true;

@@ -3,6 +3,7 @@ package ar.com.ada.api.moverest.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.com.ada.api.moverest.entities.Inmobiliaria;
 import ar.com.ada.api.moverest.repositories.InmobiliariaRepository;
 
 /**
@@ -13,9 +14,11 @@ public class InmobiliariaService {
 
     @Autowired
     InmobiliariaRepository repoInmobiliaria;
+    
 
-    public void crearPublicacion(String ubicacion, String direccion, int ambientes,String amenities, String instalaciones, double superficie, double precio, String moneda, String tipoInmueble) {
-        
-    }
+    public void save(Inmobiliaria mr) {
+        repoInmobiliaria.save(mr);
+       
+   }
     
 }
