@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.moverest.entities.Inmobiliaria;
-import ar.com.ada.api.moverest.entities.Persona;
+import ar.com.ada.api.moverest.entities.Locatario;
 import ar.com.ada.api.moverest.entities.Usuario;
 import ar.com.ada.api.moverest.repositories.UsuarioRepository;
 
@@ -17,7 +17,7 @@ public class UsuarioService {
     @Autowired
     UsuarioRepository repoUsuario;
     @Autowired
-    PersonaService personaService;
+    LocatarioService locatarioService;
     @Autowired
     InmobiliariaService inmobiliariaService;
 
@@ -30,12 +30,12 @@ public class UsuarioService {
 
         if (tipo = true)
         {
-        Persona p = new Persona();
-        p.setNombre(nombre);
-        p.setTipoIdentificacion(tipoIdentificacion);
-        p.setEdad(edad);
-        p.setUsuario(u);
-        personaService.save(p);
+        Locatario l = new Locatario();
+        l.setNombre(nombre);
+        l.setTipoIdentificacion(tipoIdentificacion);
+        l.setEdad(edad);
+        l.setUsuario(u);
+        locatarioService.save(l);
         }
         else
         {

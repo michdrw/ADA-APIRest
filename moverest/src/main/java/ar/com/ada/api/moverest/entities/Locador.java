@@ -2,7 +2,12 @@ package ar.com.ada.api.moverest.entities;
 
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Locador
@@ -15,6 +20,7 @@ public class Locador extends Persona {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer locadorId;
     private List <Inmueble> propiedades;
+
     
     public Locador() {
     }
