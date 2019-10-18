@@ -20,34 +20,6 @@ public class Locatario extends Persona {
     public Locatario() {
     }
 
-    public Locatario(Integer locatarioId) {
-        this.locatarioId = locatarioId;
-    }
-    
-    public int getEdad() {
-        return super.getEdad();
-    }
-
-    public String getNombre() {
-        return super.getNombre();
-    }
-
-    public String getTipoIdentificacion() {
-        return super.getTipoIdentificacion();
-    }
-    
-    public void setEdad(int edad) {
-        super.setEdad(edad);
-    }
-
-    public void setNombre(String nombre) {
-        super.setNombre(nombre);
-    }
-
-    public void setTipoIdentificacion(String tipoIdentificacion) {
-        super.setTipoIdentificacion(tipoIdentificacion);
-    }
-
     public Integer getLocatarioId() {
         return locatarioId;
     }

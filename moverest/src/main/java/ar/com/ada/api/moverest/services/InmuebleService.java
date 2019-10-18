@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.moverest.entities.Inmueble;
+import ar.com.ada.api.moverest.entities.Locador;
 import ar.com.ada.api.moverest.repositories.InmuebleRepository;
 
 /**
@@ -32,6 +33,9 @@ public class InmuebleService {
         i.setPrecio(precio);
         i.setMoneda(moneda);
         i.setTipoInmueble(tipoInmueble);
+
+        Locador l = new Locador();
+
 
         repoInmueble.save(i);
     }

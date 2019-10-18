@@ -5,13 +5,8 @@ import javax.persistence.*;
 /**
  * Persona
  */
-@Entity
-@Table(name ="persona")
-public class Persona {
-    @Id
-    @Column(name = "persona_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer personaId;
+public abstract class Persona {
+    
     private String nombre;
     private int edad;
     @Column(name = "tipo_identificacion")
@@ -22,13 +17,6 @@ public class Persona {
     @OneToOne( mappedBy = "persona", cascade = CascadeType.ALL)
     private Usuario usuario;
 
-    public Integer getPersonaId() {
-        return personaId;
-    }
-
-    public void setPersonaId(Integer personaId) {
-        this.personaId = personaId;
-    }
 
     public String getNombre() {
         return nombre;
