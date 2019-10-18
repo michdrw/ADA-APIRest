@@ -1,12 +1,16 @@
 package ar.com.ada.api.moverest.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,8 +23,9 @@ public class Locador extends Persona {
     @Column(name = "locador_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer locadorId;
-    private List <Inmueble> propiedades;
 
+    @OneToMany(mappedBy = "locador", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Inmueble> propiedades = new ArrayList<Inmueble>();
     
     public Locador() {
     }

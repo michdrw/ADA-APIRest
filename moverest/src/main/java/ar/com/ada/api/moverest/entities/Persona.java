@@ -13,9 +13,7 @@ public abstract class Persona {
     private String tipoIdentificacion;
     @Column(name = "nro_identificacion")
     private int nroIdentificacion;
-
-    @OneToOne( mappedBy = "persona", cascade = CascadeType.ALL)
-    private Usuario usuario;
+    private Usuario usario; 
 
 
     public String getNombre() {
@@ -53,16 +51,12 @@ public abstract class Persona {
         this.nroIdentificacion = nroIdentificacion;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Usuario getUsario() {
+        return usario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-        this.usuario.setPersona(this);
+    public void setUsario(Usuario usario) {
+        this.usario = usario;
     }
-    
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+
 }

@@ -1,6 +1,5 @@
 package ar.com.ada.api.moverest.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,6 +34,10 @@ public class Inmueble {
     @ManyToOne 
     @JoinColumn(name = "inmobiliaria_id", referencedColumnName = "inmobiliaria_id") 
     private Inmobiliaria inmobiliaria;
+
+    @ManyToOne
+    @JoinColumn(name = "locador_id", referencedColumnName = "locador_id")
+    private Locador locador;
 
 
     public String getDireccion() {
