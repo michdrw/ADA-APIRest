@@ -139,6 +139,14 @@ public class Inmueble {
         this.inmobiliaria = inmobiliaria;
     }
 
+    public Locador getLocador() {
+        return locador;
+    }
+
+    public void setLocador(Locador locador) {
+        this.locador = locador;
+    }
+
     
     
 }

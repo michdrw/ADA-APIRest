@@ -25,7 +25,7 @@ public class Locador extends Persona {
     private Integer locadorId;
 
     @OneToMany(mappedBy = "locador", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Inmueble> propiedades = new ArrayList<Inmueble>();
+    private List<Inmueble> inmuebles = new ArrayList<Inmueble>();
     
     public Locador() {
     }
@@ -66,12 +66,17 @@ public class Locador extends Persona {
         this.locadorId = locadorId;
     }
 
-    public List<Inmueble> getPropiedades() {
-        return propiedades;
+    public List<Inmueble> getInmuebles() {
+        return inmuebles;
     }
 
-    public void setPropiedades(List<Inmueble> propiedades) {
-        this.propiedades = propiedades;
+    public void setInmuebles(List<Inmueble> inmuebles) {
+        this.inmuebles = inmuebles;
+    }
+
+    public void declararInmueble(Inmueble inmueble) {
+        inmueble.setLocador(this);
+        inmuebles.add(inmueble);
     }
 
     

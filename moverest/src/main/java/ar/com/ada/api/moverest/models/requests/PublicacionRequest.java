@@ -5,6 +5,7 @@ package ar.com.ada.api.moverest.models.requests;
  */
 public class PublicacionRequest {
 
+    public int locadorId;
     public String ubicacion;
     public String direccion;
     public int ambientes;

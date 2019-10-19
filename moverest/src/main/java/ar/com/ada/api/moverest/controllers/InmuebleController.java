@@ -22,7 +22,7 @@ public class InmuebleController {
     public PublicacionResponse postNewInmueble(@RequestBody PublicacionRequest req){
 
         PublicacionResponse pr = new PublicacionResponse();
-        inmuebleService.crearInmueble(req.ubicacion, req.direccion, req.ambientes, req.amenities, req.instalaciones, req.superficie, req.precio, req.moneda, req.tipoInmueble);
+        inmuebleService.crearInmueble(req.locadorId, req.ubicacion, req.direccion, req.ambientes, req.amenities, req.instalaciones, req.superficie, req.precio, req.moneda, req.tipoInmueble);
 
         pr.isOk = true;
         pr.message = "Inmueble publicado con exito";
