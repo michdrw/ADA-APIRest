@@ -6,15 +6,14 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * Inmobiliaria
@@ -29,13 +28,13 @@ public class Inmobiliaria {
     private List <Inmueble> catalogoInmuebles; 
     private List <Locador> listaLocadores;
     private List <Locatario> listaLocatarios;
-
-    @OneToMany (mappedBy = "inmobiliaria", cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Inmueble> inmuebles = new ArrayList<Inmueble>();
-
-    @OneToOne( mappedBy = "inmobiliaria", cascade = CascadeType.ALL)
+    
+    @OneToOne
+    @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
     private Usuario usuario;
+
+    @OneToMany(mappedBy = "inmobiliaria", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Inmueble> inmuebles = new ArrayList<Inmueble>();
 
     public Inmobiliaria() {
     }
@@ -73,14 +72,7 @@ public class Inmobiliaria {
         this.listaLocatarios = listaLocatarios;
     }
 
-    public List<Inmueble> getInmuebles() {
-        return inmuebles;
-    }
-
-    public void setInmuebles(List<Inmueble> inmuebles) {
-        this.inmuebles = inmuebles;
-    }
-     
+    
     public void agregarInmueble(Inmueble i) {
         i.setInmobiliaria(this);
         inmuebles.add(i);
@@ -93,5 +85,14 @@ public class Inmobiliaria {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
+
+    public List<Inmueble> getInmuebles() {
+        return inmuebles;
+    }
+
+    public void setInmuebles(List<Inmueble> inmuebles) {
+        this.inmuebles = inmuebles;
+    }
+
+
 }

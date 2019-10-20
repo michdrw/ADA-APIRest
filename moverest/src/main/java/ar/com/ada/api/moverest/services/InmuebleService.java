@@ -36,7 +36,7 @@ public class InmuebleService {
         i.setMoneda(moneda);
         i.setTipoInmueble(tipoInmueble);
         repoInmueble.save(i);
-
+        /*
         Locador lo = locadorService.buscarPorId(locadorId);
         if (lo == null)
         {
@@ -48,7 +48,7 @@ public class InmuebleService {
         {
             lo.declararInmueble(i);
             i.setLocador(lo);
-        }
+        }*/
 
         repoInmueble.save(i);
     }

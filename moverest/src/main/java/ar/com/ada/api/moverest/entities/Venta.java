@@ -16,6 +16,10 @@ public class Venta extends Servicio {
     private Integer ventaId;
     private List <Inmueble> inmueblesDeVenta;
 
+    @OneToOne
+    @JoinColumn(name = "inmueble_id", referencedColumnName = "inmueble_id")
+    private Inmueble inmueble;
+
     public Venta(double costo, Integer ventaId) {
         super(costo);
         this.ventaId = ventaId;
@@ -48,6 +52,14 @@ public class Venta extends Servicio {
 
     public void setInmueblesDeVenta(List<Inmueble> inmueblesDeVenta) {
         this.inmueblesDeVenta = inmueblesDeVenta;
+    }
+
+    public Inmueble getInmueble() {
+        return inmueble;
+    }
+
+    public void setInmueble(Inmueble inmueble) {
+        this.inmueble = inmueble;
     }
     
 }

@@ -1,7 +1,9 @@
 package ar.com.ada.api.moverest.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 
 /**
  * Inmueble
@@ -32,19 +35,26 @@ public class Inmueble {
     private String tipoInmueble;
     private String estado;
 
-    @ManyToOne 
-    @JoinColumn(name = "inmobiliaria_id", referencedColumnName = "inmobiliaria_id") 
-    private Inmobiliaria inmobiliaria;
-
-    @ManyToOne
-    @JoinColumn(name = "locador_id", referencedColumnName = "locador_id")
-    private Locador locador;
-
-    @OneToOne
-    @JoinColumn(name = "reserva_id", referencedColumnName = "reserva_id")
+    @OneToOne(mappedBy = "inmueble", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Reserva reserva;
 
+    @OneToOne(mappedBy = "inmueble", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Arrendamiento arrendamiento;
 
+    @OneToOne(mappedBy = "inmueble", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Venta venta;
+
+    @OneToOne(mappedBy = "inmueble", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Locador locador;
+
+    @ManyToOne
+    @JoinColumn(name = "inmobiliaria_id", referencedColumnName = "inmobiliaria_id")
+    private Inmobiliaria inmobiliaria;
+
+
+    public Inmueble() {
+    }
+    
     public String getDireccion() {
         return direccion;
     }
@@ -133,15 +143,28 @@ public class Inmueble {
         this.inmuebleId = inmuebleId;
     }
 
-    public Inmueble() {
+    public Reserva getReserva() {
+        return reserva;
     }
 
-    public Inmobiliaria getInmobiliaria() {
-        return inmobiliaria;
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
     }
 
-    public void setInmobiliaria(Inmobiliaria inmobiliaria) {
-        this.inmobiliaria = inmobiliaria;
+    public Arrendamiento getArrendamiento() {
+        return arrendamiento;
+    }
+
+    public void setArrendamiento(Arrendamiento arrendamiento) {
+        this.arrendamiento = arrendamiento;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
     }
 
     public Locador getLocador() {
@@ -152,6 +175,13 @@ public class Inmueble {
         this.locador = locador;
     }
 
-    
+    public Inmobiliaria getInmobiliaria() {
+        return inmobiliaria;
+    }
+
+    public void setInmobiliaria(Inmobiliaria inmobiliaria) {
+        this.inmobiliaria = inmobiliaria;
+    }
+
     
 }

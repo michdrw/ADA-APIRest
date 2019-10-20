@@ -16,6 +16,10 @@ public class Arrendamiento extends Servicio {
     private Integer arrendamientoId;
     private List <Inmueble> inmueblesDeArrendamiento;
 
+    @OneToOne
+    @JoinColumn(name = "inmueble_id", referencedColumnName = "inmueble_id")
+    private Inmueble inmueble;
+
     public double getCosto() { 
         return super.getCosto();
     }
@@ -46,6 +50,14 @@ public class Arrendamiento extends Servicio {
 
     public void setInmueblesDeArrendamiento(List<Inmueble> inmueblesDeArrendamiento) {
         this.inmueblesDeArrendamiento = inmueblesDeArrendamiento;
+    }
+
+    public Inmueble getInmueble() {
+        return inmueble;
+    }
+
+    public void setInmueble(Inmueble inmueble) {
+        this.inmueble = inmueble;
     }
     
 }

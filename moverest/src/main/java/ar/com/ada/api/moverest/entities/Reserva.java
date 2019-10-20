@@ -1,12 +1,9 @@
 package ar.com.ada.api.moverest.entities;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,12 +24,13 @@ public class Reserva extends Servicio {
     private Integer reservaId;
     private List <Inmueble> inmueblesReservados;
 
+    @OneToOne
+    @JoinColumn(name = "inmueble_id", referencedColumnName = "inmueble_id")
+    private Inmueble inmueble;
+
     @ManyToOne
     @JoinColumn(name = "locatario_id", referencedColumnName = "locatario_id")
     private Locatario locatario;
-
-    @OneToOne(mappedBy = "reserva", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Inmueble inmueble;
 
 
     public Integer getReservaId() {
@@ -59,6 +57,14 @@ public class Reserva extends Servicio {
         this.reservaId = reservaId;
     }
 
+    public Inmueble getInmueble() {
+        return inmueble;
+    }
+
+    public void setInmueble(Inmueble inmueble) {
+        this.inmueble = inmueble;
+    }
+
     public Locatario getLocatario() {
         return locatario;
     }
@@ -66,5 +72,5 @@ public class Reserva extends Servicio {
     public void setLocatario(Locatario locatario) {
         this.locatario = locatario;
     }
-    
+
 }
