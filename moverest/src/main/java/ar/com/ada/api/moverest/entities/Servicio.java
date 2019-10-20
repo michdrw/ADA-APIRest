@@ -5,20 +5,20 @@ package ar.com.ada.api.moverest.entities;
  */
 
 public abstract class Servicio {
-    private String costo;
+    private double costo;
 
-    public String getCosto() {
+    public double getCosto() {
         return costo;
     }
 
-    public void setCosto(String costo) {
+    public void setCosto(double costo) {
         this.costo = costo;
     }
 
     public Servicio() {
     }
 
-    public Servicio(String costo) {
+    public Servicio(double costo) {
         this.costo = costo;
     }
 }

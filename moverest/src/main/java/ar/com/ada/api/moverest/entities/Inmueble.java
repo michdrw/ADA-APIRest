@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -38,6 +39,10 @@ public class Inmueble {
     @ManyToOne
     @JoinColumn(name = "locador_id", referencedColumnName = "locador_id")
     private Locador locador;
+
+    @OneToOne
+    @JoinColumn(name = "reserva_id", referencedColumnName = "reserva_id")
+    private Reserva reserva;
 
 
     public String getDireccion() {

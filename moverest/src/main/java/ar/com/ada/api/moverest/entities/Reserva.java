@@ -1,9 +1,19 @@
 package ar.com.ada.api.moverest.entities;
 
-import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * Reserva
@@ -18,8 +28,12 @@ public class Reserva extends Servicio {
     private List <Inmueble> inmueblesReservados;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
-    private Usuario usuario;
+    @JoinColumn(name = "locatario_id", referencedColumnName = "locatario_id")
+    private Locatario locatario;
+
+    @OneToOne(mappedBy = "reserva", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Inmueble inmueble;
+
 
     public Integer getReservaId() {
         return reservaId;
@@ -40,9 +54,17 @@ public class Reserva extends Servicio {
     public Reserva() {
     }
 
-    public Reserva(String costo, Integer reservaId) {
+    public Reserva(double costo, Integer reservaId) {
         super(costo);
         this.reservaId = reservaId;
+    }
+
+    public Locatario getLocatario() {
+        return locatario;
+    }
+
+    public void setLocatario(Locatario locatario) {
+        this.locatario = locatario;
     }
     
 }

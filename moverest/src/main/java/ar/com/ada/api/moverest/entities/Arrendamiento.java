@@ -16,18 +16,18 @@ public class Arrendamiento extends Servicio {
     private Integer arrendamientoId;
     private List <Inmueble> inmueblesDeArrendamiento;
 
-    public String getCosto() { 
+    public double getCosto() { 
         return super.getCosto();
     }
  
-    public void setCosto(String costo) {
+    public void setCosto(double costo) {
         super.setCosto(costo);
     }
 
     public Arrendamiento() {
     }
 
-    public Arrendamiento(String costo, Integer arrendamientoId) {
+    public Arrendamiento(double costo, Integer arrendamientoId) {
         super(costo);
         this.arrendamientoId = arrendamientoId;
     }

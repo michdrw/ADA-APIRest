@@ -2,7 +2,15 @@ package ar.com.ada.api.moverest.entities;
 
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * Locatario
@@ -16,6 +24,12 @@ public class Locatario extends Persona {
     private Integer locatarioId;
     private List <Reserva> inmueblesReservados;
     private List <Inmueble> inmueblesVendidosOAlquilados;
+
+    @OneToMany (mappedBy = "locatario", cascade = CascadeType.ALL)
+    private Reserva reserva;
+
+    @OneToOne( mappedBy = "locatario", cascade = CascadeType.ALL)
+    private Usuario usuario;
 
     public Locatario() {
     }

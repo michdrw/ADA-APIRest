@@ -1,6 +1,13 @@
 package ar.com.ada.api.moverest.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,11 +27,15 @@ public class Usuario {
 
     @JsonIgnore
     @OneToOne
-    @JoinColumn(name = "persona_id", referencedColumnName = "persona_id")
-    private Persona persona;
+    @JoinColumn(name = "locatario_id", referencedColumnName = "locatario_id")
+    private Locatario locatario;
 
-    @OneToMany (mappedBy = "reserva", cascade = CascadeType.ALL)
-    private Reserva reserva;
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "inmobiliaria_id", referencedColumnName = "inmobiliaria_id")
+    private Inmobiliaria inmobiliaria;
+
+
 
 
     public Usuario() {
@@ -62,21 +73,6 @@ public class Usuario {
         this.password = password;
     }
 
-    public Persona getPersona() {
-        return persona;
-    }
 
-    public void setPersona(Persona persona) {
-        this.persona = persona;
-    }
-
-    public Reserva getReserva() {
-        return reserva;
-    }
-
-    public void setReserva(Reserva reserva) {
-        this.reserva = reserva;
-    }
-    
     
 }

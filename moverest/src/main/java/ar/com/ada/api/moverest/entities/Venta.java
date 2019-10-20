@@ -16,7 +16,7 @@ public class Venta extends Servicio {
     private Integer ventaId;
     private List <Inmueble> inmueblesDeVenta;
 
-    public Venta(String costo, Integer ventaId) {
+    public Venta(double costo, Integer ventaId) {
         super(costo);
         this.ventaId = ventaId;
     }
@@ -33,12 +33,12 @@ public class Venta extends Servicio {
     }
 
     @Override
-    public String getCosto() {
+    public double getCosto() {
         return super.getCosto();
     }
 
     @Override
-    public void setCosto(String costo) {
+    public void setCosto(double costo) {
         super.setCosto(costo);
     }
 
