@@ -13,7 +13,7 @@ public abstract class Persona {
     private String tipoIdentificacion;
     @Column(name = "nro_identificacion")
     private int nroIdentificacion;
-    private Usuario usario; 
+    private Usuario usuario; 
 
 
     public String getNombre() {
@@ -51,12 +51,12 @@ public abstract class Persona {
         this.nroIdentificacion = nroIdentificacion;
     }
 
-    public Usuario getUsario() {
-        return usario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setUsario(Usuario usario) {
-        this.usario = usario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
 }

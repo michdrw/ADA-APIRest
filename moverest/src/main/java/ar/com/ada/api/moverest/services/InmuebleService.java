@@ -23,7 +23,7 @@ public class InmuebleService {
         
     }
 
-    public void crearInmueble(int locadorId, String ubicacion, String direccion, int ambientes,String amenities, String instalaciones, double superficie, double precio, String moneda, String tipoInmueble)
+    public int crearInmueble(int locadorId, String ubicacion, String direccion, int ambientes,String amenities, String instalaciones, double superficie, double precio, String moneda, String tipoInmueble)
     {
         Inmueble i = new Inmueble();
         i.setUbicacion(ubicacion);
@@ -36,7 +36,7 @@ public class InmuebleService {
         i.setMoneda(moneda);
         i.setTipoInmueble(tipoInmueble);
         repoInmueble.save(i);
-        /*
+        
         Locador lo = locadorService.buscarPorId(locadorId);
         if (lo == null)
         {
@@ -48,9 +48,11 @@ public class InmuebleService {
         {
             lo.declararInmueble(i);
             i.setLocador(lo);
-        }*/
+        }
 
         repoInmueble.save(i);
+
+        return i.getInmuebleId();
     }
 
     public void asignarLocador(int locadorId)

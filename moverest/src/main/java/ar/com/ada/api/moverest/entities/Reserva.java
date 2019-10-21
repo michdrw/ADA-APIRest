@@ -22,7 +22,6 @@ public class Reserva extends Servicio {
     @Column(name = "reserva_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer reservaId;
-    private List <Inmueble> inmueblesReservados;
 
     @OneToOne
     @JoinColumn(name = "inmueble_id", referencedColumnName = "inmueble_id")
@@ -39,14 +38,6 @@ public class Reserva extends Servicio {
 
     public void setReservaId(Integer reservaId) {
         this.reservaId = reservaId;
-    }
-
-    public List<Inmueble> getInmueblesReservados() {
-        return inmueblesReservados;
-    }
-
-    public void setInmueblesReservados(List<Inmueble> inmueblesReservados) {
-        this.inmueblesReservados = inmueblesReservados;
     }
 
     public Reserva() {

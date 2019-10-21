@@ -43,8 +43,9 @@ public class Inmueble {
 
     @OneToOne(mappedBy = "inmueble", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Venta venta;
-
-    @OneToOne(mappedBy = "inmueble", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    
+    @ManyToOne
+    @JoinColumn(name = "locador_id", referencedColumnName = "locador_id")
     private Locador locador;
 
     @ManyToOne

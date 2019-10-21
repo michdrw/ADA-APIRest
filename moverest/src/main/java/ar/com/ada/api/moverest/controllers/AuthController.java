@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.*;
 
 import ar.com.ada.api.moverest.models.requests.RegistrationRequest;
-import ar.com.ada.api.moverest.models.responses.RegistrationResponse;
+import ar.com.ada.api.moverest.models.responses.BasicResponse;
 import ar.com.ada.api.moverest.services.UsuarioService;
 
 /**
@@ -18,18 +18,18 @@ public class AuthController {
     UsuarioService usuarioService;
 
     @PostMapping("auth/register")
-    public RegistrationResponse postRegisterUser(@RequestBody RegistrationRequest req) {
+    public BasicResponse postRegisterUser(@RequestBody RegistrationRequest req) {
 
 
-        RegistrationResponse r = new RegistrationResponse();
+        BasicResponse b = new BasicResponse();
         int usuarioCreadoId = usuarioService.crearUsuario(req.tipo, req.personaData.nombre, req.personaData.edad, req.personaData.tipoIdentificacion, req.personaData.nroIdentificacion, req.email, req.password);
         
 
-        r.isOk = true;
-        r.message = "Te registraste con exito";
-        r.usuarioId = usuarioCreadoId; 
+        b.isOk = true;
+        b.message = "Te registraste con exito";
+        b.id = usuarioCreadoId; 
 
-        return r;
+        return b;
         
     }
 

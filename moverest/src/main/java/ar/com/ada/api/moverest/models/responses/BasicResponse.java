@@ -3,9 +3,10 @@ package ar.com.ada.api.moverest.models.responses;
 /**
  * PublicacionResponse
  */
-public class PublicacionResponse {
+public class BasicResponse {
 
     public boolean isOk;
     public String message;
+    public int id;
     
 }

@@ -16,6 +16,11 @@ public class LocadorService {
 
     @Autowired
     LocadorRepository repoLocador;
+
+    public void save(Locador l) 
+    {
+        repoLocador.save(l);
+    }
     
     public Locador buscarPorId(int locadorId)
     {

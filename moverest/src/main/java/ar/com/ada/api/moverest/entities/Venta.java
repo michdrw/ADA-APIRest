@@ -14,7 +14,6 @@ public class Venta extends Servicio {
     @Column(name = "venta_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ventaId;
-    private List <Inmueble> inmueblesDeVenta;
 
     @OneToOne
     @JoinColumn(name = "inmueble_id", referencedColumnName = "inmueble_id")
@@ -44,14 +43,6 @@ public class Venta extends Servicio {
     @Override
     public void setCosto(double costo) {
         super.setCosto(costo);
-    }
-
-    public List<Inmueble> getInmueblesDeVenta() {
-        return inmueblesDeVenta;
-    }
-
-    public void setInmueblesDeVenta(List<Inmueble> inmueblesDeVenta) {
-        this.inmueblesDeVenta = inmueblesDeVenta;
     }
 
     public Inmueble getInmueble() {

@@ -25,9 +25,6 @@ public class Inmobiliaria {
     @Column(name = "inmobiliaria_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer inmobiliariaId;
-    private List <Inmueble> catalogoInmuebles; 
-    private List <Locador> listaLocadores;
-    private List <Locatario> listaLocatarios;
     
     @OneToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
@@ -46,30 +43,6 @@ public class Inmobiliaria {
 
     public void setInmobiliariaId(Integer inmobiliariaId) {
         this.inmobiliariaId = inmobiliariaId;
-    }
-
-    public List<Inmueble> getCatalogoInmuebles() {
-        return catalogoInmuebles;
-    }
-
-    public void setCatalogoInmuebles(List<Inmueble> catalogoInmuebles) {
-        this.catalogoInmuebles = catalogoInmuebles;
-    }
-
-    public List<Locador> getListaLocadores() {
-        return listaLocadores;
-    }
-
-    public void setListaLocadores(List<Locador> listaLocadores) {
-        this.listaLocadores = listaLocadores;
-    }
-
-    public List<Locatario> getListaLocatarios() {
-        return listaLocatarios;
-    }
-
-    public void setListaLocatarios(List<Locatario> listaLocatarios) {
-        this.listaLocatarios = listaLocatarios;
     }
 
     

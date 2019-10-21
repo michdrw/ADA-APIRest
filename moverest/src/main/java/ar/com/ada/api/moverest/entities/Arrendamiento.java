@@ -14,7 +14,6 @@ public class Arrendamiento extends Servicio {
     @Column(name = "arrendamiento_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer arrendamientoId;
-    private List <Inmueble> inmueblesDeArrendamiento;
 
     @OneToOne
     @JoinColumn(name = "inmueble_id", referencedColumnName = "inmueble_id")
@@ -42,14 +41,6 @@ public class Arrendamiento extends Servicio {
 
     public void setArrendamientoId(Integer arrendamientoId) {
         this.arrendamientoId = arrendamientoId;
-    }
-
-    public List<Inmueble> getInmueblesDeArrendamiento() {
-        return inmueblesDeArrendamiento;
-    }
-
-    public void setInmueblesDeArrendamiento(List<Inmueble> inmueblesDeArrendamiento) {
-        this.inmueblesDeArrendamiento = inmueblesDeArrendamiento;
     }
 
     public Inmueble getInmueble() {

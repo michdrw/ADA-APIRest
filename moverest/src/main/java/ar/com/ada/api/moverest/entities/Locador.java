@@ -1,6 +1,17 @@
 package ar.com.ada.api.moverest.entities;
 
-import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 
 /**
  * Locador
@@ -13,9 +24,9 @@ public class Locador extends Persona {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer locadorId;
 
-    @OneToMany
-    @JoinColumn(name = "inmueble_id", referencedColumnName = "inmueble_id")
-    private Inmueble inmueble;
+
+    @OneToMany(mappedBy = "locador", cascade = CascadeType.ALL)
+    private List<Inmueble> inmuebles = new ArrayList<Inmueble>();
 
 
     public Locador() {
@@ -57,18 +68,18 @@ public class Locador extends Persona {
         this.locadorId = locadorId;
     }
 
-
-    /*public void declararInmueble(Inmueble inmueble) {
-        inmueble.setLocador(this);
-        inmuebles.add(inmueble);
-    }*/
-
-    public Inmueble getInmueble() {
-        return inmueble;
+    public List<Inmueble> getInmuebles() {
+        return inmuebles;
     }
 
-    public void setInmueble(Inmueble inmueble) {
-        this.inmueble = inmueble;
+    public void setInmuebles(List<Inmueble> inmuebles) {
+        this.inmuebles = inmuebles;
+    }
+
+
+    public void declararInmueble(Inmueble inmueble) {
+        inmueble.setLocador(this);
+        inmuebles.add(inmueble);
     }
 
     

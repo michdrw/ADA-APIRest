@@ -33,8 +33,9 @@ public class UsuarioService {
         Locatario l = new Locatario();
         l.setNombre(nombre);
         l.setTipoIdentificacion(tipoIdentificacion);
+        l.setNroIdentificacion(nroIdentificacion);
         l.setEdad(edad);
-        l.setUsario(u);
+        l.setUsuario(u);
         locatarioService.save(l);
         }
         else
