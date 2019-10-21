@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.com.ada.api.moverest.entities.Arrendamiento;
 import ar.com.ada.api.moverest.entities.Inmueble;
 import ar.com.ada.api.moverest.entities.Locatario;
 import ar.com.ada.api.moverest.entities.Reserva;
+import ar.com.ada.api.moverest.entities.Venta;
 import ar.com.ada.api.moverest.repositories.LocatarioRepository;
 
 /**
@@ -25,6 +27,12 @@ public class LocatarioService {
 
     @Autowired
     ReservaService reservaService;
+
+    @Autowired
+    ArrendamientoService arrendamientoService;
+
+    @Autowired
+    VentaService ventaService;
 
 
     public void save(Locatario l) {
@@ -58,7 +66,34 @@ public class LocatarioService {
         
         reservaService.save(r);
 
-        return r.getReservaId();
+        return r.getReservaId();   
+    }
+
+    public int crearContratoArrendamiento(int locatarioId, int inmuebleId)
+    {
+        Inmueble i = inmuebleService.buscarPorId(inmuebleId);
+        Locatario l = buscarPorId(locatarioId);
+        Arrendamiento a = new Arrendamiento();
+        a.setInmueble(i);
+        a.setLocatario(l);
+        a.setCosto(i.getPrecio());
+
+        arrendamientoService.save(a);
+
+        return a.getArrendamientoId();
+    }
+
+    public int crearContratoVenta(int locatarioId, int inmuebleId)
+    {
+        Inmueble i = inmuebleService.buscarPorId(inmuebleId);
+        Locatario l = buscarPorId(locatarioId);
+        Venta v = new Venta();
+        v.setInmueble(i);
+        v.setLocatario(l);
+        v.setCosto(i.getPrecio());
+
+        ventaService.save(v);
         
+        return v.getVentaId();
     }
 }

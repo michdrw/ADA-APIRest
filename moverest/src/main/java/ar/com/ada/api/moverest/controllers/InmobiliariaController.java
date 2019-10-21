@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.moverest.entities.Inmueble;
 import ar.com.ada.api.moverest.entities.Locatario;
-import ar.com.ada.api.moverest.models.requests.EstadoRequest;
+import ar.com.ada.api.moverest.models.requests.EstadoInmuebleRequest;
 import ar.com.ada.api.moverest.models.requests.PersonaRequest;
-import ar.com.ada.api.moverest.models.requests.PublicacionRequest;
+import ar.com.ada.api.moverest.models.requests.InmuebleRequest;
 import ar.com.ada.api.moverest.models.responses.BasicResponse;
 import ar.com.ada.api.moverest.services.InmobiliariaService;
 import ar.com.ada.api.moverest.services.InmuebleService;
@@ -51,7 +51,7 @@ public class InmobiliariaController {
     }
 
     @PostMapping("/inmuebles")
-    public BasicResponse postNewInmueble(@RequestBody PublicacionRequest req){
+    public BasicResponse postNewInmueble(@RequestBody InmuebleRequest req){
 
         BasicResponse r = new BasicResponse();
         int inmuebleCreadoId = inmuebleService.crearInmueble(req.locadorId, req.ubicacion, req.direccion, req.ambientes, req.amenities, req.instalaciones, req.superficie, req.precio, req.moneda, req.tipoInmueble, req.estado);
@@ -71,7 +71,7 @@ public class InmobiliariaController {
     }
 
     @PutMapping("/inmuebles/{id}") 
-    public BasicResponse actualizarEstado(@PathVariable int id, @RequestBody EstadoRequest req)
+    public BasicResponse actualizarEstado(@PathVariable int id, @RequestBody EstadoInmuebleRequest req)
     {
         BasicResponse r = new BasicResponse();
         int inmuebleModificadoId = inmuebleService.actualizarEstado(req.inmuebleId, req.estado);

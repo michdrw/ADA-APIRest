@@ -1,10 +1,12 @@
 package ar.com.ada.api.moverest.models.requests;
 
 /**
- * ServicioRequest
+ * ReservaRequest
  */
-public class ServicioRequest {
+public class ReservaRequest {
 
     public int locatarioId;
     public int inmuebleId;
+    public double costo;
+
 }
