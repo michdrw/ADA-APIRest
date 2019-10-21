@@ -1,5 +1,7 @@
 package ar.com.ada.api.moverest.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +26,27 @@ public class InmobiliariaService {
         repoInmobiliaria.save(mr);
     }
 
-   public int crearLocador(String nombre, int edad, String tipoIdentificacion, int nroIdentificacion)
+    public Inmobiliaria buscarPorId(int id)
+    {
+        Optional<Inmobiliaria> i = repoInmobiliaria.findById(id);
+
+        if (i.isPresent()) {
+            return i.get();
+        }
+        return null;
+    }
+
+   public int crearLocador(String nombre, String tipoIdentificacion, int nroIdentificacion, int edad, String juricidad, int inmobiliariaId)
    {
        Locador l = new Locador();
         l.setNombre(nombre);
         l.setTipoIdentificacion(tipoIdentificacion);
         l.setNroIdentificacion(nroIdentificacion);
         l.setEdad(edad);
+        l.setJuricidad(juricidad);
+        locadorService.save(l);
+        Inmobiliaria i = buscarPorId(inmobiliariaId);
+        l.setInmobiliaria(i);
 
         locadorService.save(l);
         return l.getLocadorId();

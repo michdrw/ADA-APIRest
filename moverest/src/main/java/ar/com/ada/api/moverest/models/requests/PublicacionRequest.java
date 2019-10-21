@@ -15,4 +15,5 @@ public class PublicacionRequest {
     public double precio;
     public String moneda; 
     public String tipoInmueble;
+    public String estado;
 }

@@ -6,8 +6,10 @@ package ar.com.ada.api.moverest.models.requests;
 public class PersonaRequest {
 
     public String nombre;
-    public int edad;
     public String tipoIdentificacion;
     public int nroIdentificacion;
+    public int edad;
+    public String juricidad;
+    public int inmobiliariaId;
     
 }

@@ -25,8 +25,11 @@ public class Inmueble {
     private Integer inmuebleId;
     private String direccion;
     private String ubicacion;
+    @Column(name = "ambiente")
     private int ambientes;
+    @Column(name = "amenity")
     private String amenities;
+    @Column(name = "instalacion")
     private String instalaciones;
     private double superficie;
     private double precio;
@@ -47,11 +50,6 @@ public class Inmueble {
     @ManyToOne
     @JoinColumn(name = "locador_id", referencedColumnName = "locador_id")
     private Locador locador;
-
-    @ManyToOne
-    @JoinColumn(name = "inmobiliaria_id", referencedColumnName = "inmobiliaria_id")
-    private Inmobiliaria inmobiliaria;
-
 
     public Inmueble() {
     }
@@ -176,13 +174,7 @@ public class Inmueble {
         this.locador = locador;
     }
 
-    public Inmobiliaria getInmobiliaria() {
-        return inmobiliaria;
-    }
 
-    public void setInmobiliaria(Inmobiliaria inmobiliaria) {
-        this.inmobiliaria = inmobiliaria;
-    }
 
     
 }

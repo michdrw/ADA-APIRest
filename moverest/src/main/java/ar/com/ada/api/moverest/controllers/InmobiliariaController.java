@@ -28,7 +28,7 @@ public class InmobiliariaController {
     public BasicResponse postNewLocador(@RequestBody PersonaRequest req)
     {
         BasicResponse r = new BasicResponse();
-        int locadorCreadoId = inmobiliariaService.crearLocador(req.nombre, req.edad, req.tipoIdentificacion, req.nroIdentificacion);
+        int locadorCreadoId = inmobiliariaService.crearLocador(req.nombre, req.tipoIdentificacion, req.nroIdentificacion, req.edad, req.juricidad, req.inmobiliariaId);
 
         r.isOk = true;
         r.message = "Locador creado con exito";
@@ -41,7 +41,7 @@ public class InmobiliariaController {
     public BasicResponse postNewInmueble(@RequestBody PublicacionRequest req){
 
         BasicResponse r = new BasicResponse();
-        int inmuebleCreadoId = inmuebleService.crearInmueble(req.locadorId, req.ubicacion, req.direccion, req.ambientes, req.amenities, req.instalaciones, req.superficie, req.precio, req.moneda, req.tipoInmueble);
+        int inmuebleCreadoId = inmuebleService.crearInmueble(req.locadorId, req.ubicacion, req.direccion, req.ambientes, req.amenities, req.instalaciones, req.superficie, req.precio, req.moneda, req.tipoInmueble, req.estado);
 
         r.isOk = true;
         r.message = "Inmueble publicado con exito";

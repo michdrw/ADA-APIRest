@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,8 +29,8 @@ public class Inmobiliaria {
     @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "inmobiliaria", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Inmueble> inmuebles = new ArrayList<Inmueble>();
+    @OneToMany(mappedBy = "inmobiliaria", cascade = CascadeType.ALL)
+    private List<Locador> locadores = new ArrayList<Locador>();
 
     public Inmobiliaria() {
     }
@@ -46,10 +45,10 @@ public class Inmobiliaria {
     }
 
     
-    public void agregarInmueble(Inmueble i) {
+    /*public void agregarInmueble(Inmueble i) {
         i.setInmobiliaria(this);
         inmuebles.add(i);
-    }
+    }*/
 
     public Usuario getUsuario() {
         return usuario;
@@ -59,13 +58,12 @@ public class Inmobiliaria {
         this.usuario = usuario;
     }
 
-    public List<Inmueble> getInmuebles() {
-        return inmuebles;
+    public List<Locador> getLocadores() {
+        return locadores;
     }
 
-    public void setInmuebles(List<Inmueble> inmuebles) {
-        this.inmuebles = inmuebles;
+    public void setLocadores(List<Locador> locadores) {
+        this.locadores = locadores;
     }
-
 
 }

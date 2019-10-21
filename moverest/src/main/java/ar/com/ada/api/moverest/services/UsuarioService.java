@@ -21,14 +21,20 @@ public class UsuarioService {
     @Autowired
     InmobiliariaService inmobiliariaService;
 
-    public int crearUsuario(Boolean tipo, String nombre, int edad, String tipoIdentificacion, int nroIdentificacion, String email, String password){
+    public void save(Usuario u) 
+    {
+        repoUsuario.save(u);
+    }
+
+    public int crearUsuario(String email, String password, Boolean tipo, String nombre, int edad, String tipoIdentificacion, int nroIdentificacion){
     
         Usuario u = new Usuario();
         u.setEmail(email);
         u.setUsername(email);
         u.setPassword(password);
+        save(u);
 
-        if (tipo = true)
+        if (tipo == true)
         {
         Locatario l = new Locatario();
         l.setNombre(nombre);
@@ -36,6 +42,7 @@ public class UsuarioService {
         l.setNroIdentificacion(nroIdentificacion);
         l.setEdad(edad);
         l.setUsuario(u);
+        save(u);
         locatarioService.save(l);
         }
         else
@@ -43,6 +50,8 @@ public class UsuarioService {
             Inmobiliaria mr = new Inmobiliaria(); 
             mr.setUsuario(u);
             inmobiliariaService.save(mr);
+            u.setInmobiliaria(mr);
+            save(u);
         }
 
         return u.getUsuarioId();

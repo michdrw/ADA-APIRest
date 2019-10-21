@@ -1,6 +1,5 @@
 package ar.com.ada.api.moverest.entities;
 
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

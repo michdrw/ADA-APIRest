@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,8 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * Locatario
@@ -27,13 +26,19 @@ public class Locatario extends Persona {
     @Column(name = "locatario_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer locatarioId;
+    private String nombre;
+    private int edad;
+    @Column(name = "tipo_identificacion")
+    private String tipoIdentificacion;
+    @Column(name = "nro_identificacion")
+    private int nroIdentificacion;
+    private String juricidad;
 
     @OneToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "locatario", cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "locatario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Reserva> reservas = new ArrayList<Reserva>();
 
     public Locatario() {
@@ -61,6 +66,46 @@ public class Locatario extends Persona {
 
     public void setReservas(List<Reserva> reservas) {
         this.reservas = reservas;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public String getTipoIdentificacion() {
+        return tipoIdentificacion;
+    }
+
+    public void setTipoIdentificacion(String tipoIdentificacion) {
+        this.tipoIdentificacion = tipoIdentificacion;
+    }
+
+    public int getNroIdentificacion() {
+        return nroIdentificacion;
+    }
+
+    public void setNroIdentificacion(int nroIdentificacion) {
+        this.nroIdentificacion = nroIdentificacion;
+    }
+
+    public String getJuricidad() {
+        return juricidad;
+    }
+
+    public void setJuricidad(String juricidad) {
+        this.juricidad = juricidad;
     }
 
     

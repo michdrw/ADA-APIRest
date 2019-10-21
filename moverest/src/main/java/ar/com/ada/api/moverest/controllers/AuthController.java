@@ -2,7 +2,8 @@ package ar.com.ada.api.moverest.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.moverest.models.requests.RegistrationRequest;
 import ar.com.ada.api.moverest.models.responses.BasicResponse;
@@ -22,7 +23,7 @@ public class AuthController {
 
 
         BasicResponse b = new BasicResponse();
-        int usuarioCreadoId = usuarioService.crearUsuario(req.tipo, req.personaData.nombre, req.personaData.edad, req.personaData.tipoIdentificacion, req.personaData.nroIdentificacion, req.email, req.password);
+        int usuarioCreadoId = usuarioService.crearUsuario(req.email, req.password, req.tipo, req.personaData.nombre, req.personaData.edad, req.personaData.tipoIdentificacion, req.personaData.nroIdentificacion);
         
 
         b.isOk = true;
