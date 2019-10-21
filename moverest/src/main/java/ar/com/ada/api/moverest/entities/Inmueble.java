@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * Inmueble
@@ -38,15 +40,19 @@ public class Inmueble {
     private String tipoInmueble;
     private String estado;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "inmueble", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Reserva reserva;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "inmueble", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Arrendamiento arrendamiento;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "inmueble", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Venta venta;
     
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "locador_id", referencedColumnName = "locador_id")
     private Locador locador;

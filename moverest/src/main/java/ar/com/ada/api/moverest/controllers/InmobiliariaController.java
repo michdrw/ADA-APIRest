@@ -1,10 +1,17 @@
 package ar.com.ada.api.moverest.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import ar.com.ada.api.moverest.entities.Inmueble;
+import ar.com.ada.api.moverest.models.requests.EstadoRequest;
 import ar.com.ada.api.moverest.models.requests.PersonaRequest;
 import ar.com.ada.api.moverest.models.requests.PublicacionRequest;
 import ar.com.ada.api.moverest.models.responses.BasicResponse;
@@ -48,7 +55,25 @@ public class InmobiliariaController {
         r.id = inmuebleCreadoId;
         
         return r;
+    }
 
+    @GetMapping("/inmuebles")
+    public List<Inmueble> GetInmuebles() {
+        List<Inmueble> li = inmuebleService.getInmuebles();
+
+        return li;
+    }
+
+    @PutMapping("/inmuebles/{id}") 
+    public BasicResponse actualizarEstado(@PathVariable int id, @RequestBody EstadoRequest req)
+    {
+        BasicResponse r = new BasicResponse();
+        int inmuebleModificadoId = inmuebleService.actualizarEstado(req.inmuebleId, req.estado);
+
+        r.isOk = true;
+        r.message = "El estado del inmueble ha sido cambiado";
+        r.id = inmuebleModificadoId;
+        return r;
     }
 
     

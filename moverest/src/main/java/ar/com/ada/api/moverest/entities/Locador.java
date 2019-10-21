@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * Locador
@@ -32,7 +34,6 @@ public class Locador {
     @Column(name = "nro_identificacion")
     private int nroIdentificacion;
     private String juricidad;
-
 
     @OneToMany(mappedBy = "locador", cascade = CascadeType.ALL)
     private List<Inmueble> inmuebles = new ArrayList<Inmueble>();

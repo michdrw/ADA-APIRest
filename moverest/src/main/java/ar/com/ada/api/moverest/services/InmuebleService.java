@@ -1,5 +1,8 @@
 package ar.com.ada.api.moverest.services;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +56,31 @@ public class InmuebleService {
         repoInmueble.save(i);
 
         return i.getInmuebleId();
+    }
+
+    public List<Inmueble> getInmuebles() {
+
+        return repoInmueble.findAll();
+    }
+
+    public Inmueble buscarPorId(int inmuebleId)
+    {
+        Optional<Inmueble> i = repoInmueble.findById(inmuebleId);
+
+        if (i.isPresent()) {
+            return i.get();
+        }
+        return null;
+    }
+
+    public int actualizarEstado(int inmuebleId, String estado)
+    {
+        Inmueble i = buscarPorId(inmuebleId);
+        i.setEstado(estado);
+
+        repoInmueble.save(i);
+        
+        return inmuebleId;
     }
 
 

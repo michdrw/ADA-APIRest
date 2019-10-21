@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Reserva
  */
@@ -22,6 +24,7 @@ public class Reserva extends Servicio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer reservaId;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "inmueble_id", referencedColumnName = "inmueble_id")
     private Inmueble inmueble;
