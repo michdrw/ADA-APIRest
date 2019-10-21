@@ -1,6 +1,13 @@
 package ar.com.ada.api.moverest.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * Venta
@@ -16,6 +23,10 @@ public class Venta extends Servicio {
     @OneToOne
     @JoinColumn(name = "inmueble_id", referencedColumnName = "inmueble_id")
     private Inmueble inmueble;
+
+    @OneToOne
+    @JoinColumn(name = "locatario_id", referencedColumnName = "locatario_id")
+    private Locatario locatario;
 
     public Venta(double costo, Integer ventaId) {
         super(costo);
@@ -49,6 +60,14 @@ public class Venta extends Servicio {
 
     public void setInmueble(Inmueble inmueble) {
         this.inmueble = inmueble;
+    }
+
+    public Locatario getLocatario() {
+        return locatario;
+    }
+
+    public void setLocatario(Locatario locatario) {
+        this.locatario = locatario;
     }
     
 }

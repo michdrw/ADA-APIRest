@@ -18,7 +18,7 @@ public class AuthController {
     @Autowired
     UsuarioService usuarioService;
 
-    @PostMapping("auth/register")
+    @PostMapping("/auth/register")
     public BasicResponse postRegisterUser(@RequestBody RegistrationRequest req) {
 
 

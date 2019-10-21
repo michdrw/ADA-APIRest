@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.moverest.entities.Inmueble;
+import ar.com.ada.api.moverest.entities.Locatario;
 import ar.com.ada.api.moverest.models.requests.EstadoRequest;
 import ar.com.ada.api.moverest.models.requests.PersonaRequest;
 import ar.com.ada.api.moverest.models.requests.PublicacionRequest;
 import ar.com.ada.api.moverest.models.responses.BasicResponse;
 import ar.com.ada.api.moverest.services.InmobiliariaService;
 import ar.com.ada.api.moverest.services.InmuebleService;
+import ar.com.ada.api.moverest.services.LocatarioService;
 
 /**
  * InmobiliariaController
@@ -30,8 +32,12 @@ public class InmobiliariaController {
     @Autowired
     InmuebleService inmuebleService;
 
+    @Autowired
+    LocatarioService locatarioService;
 
-     @PostMapping("/locadores")
+
+
+    @PostMapping("/locadores")
     public BasicResponse postNewLocador(@RequestBody PersonaRequest req)
     {
         BasicResponse r = new BasicResponse();
@@ -74,6 +80,13 @@ public class InmobiliariaController {
         r.message = "El estado del inmueble ha sido cambiado";
         r.id = inmuebleModificadoId;
         return r;
+    }
+
+    @GetMapping("/locatarios")
+    public List<Locatario> GetLocatarios() {
+        List<Locatario> lo = locatarioService.getLocatarios();
+
+        return lo;
     }
 
     
