@@ -49,12 +49,13 @@ public class LocatarioService {
 
     public int crearReserva(int locatarioId, int inmuebleId, double costo)
     {
+        Inmueble i = inmuebleService.buscarPorId(inmuebleId);
+        Locatario l = buscarPorId(locatarioId);
         Reserva r = new Reserva();
         r.setCosto(costo);
-        Locatario l = buscarPorId(locatarioId);
-        r.setLocatario(l);
-        Inmueble i = inmuebleService.buscarPorId(inmuebleId);
         r.setInmueble(i);
+        r.setLocatario(l);
+        
         reservaService.save(r);
 
         return r.getReservaId();

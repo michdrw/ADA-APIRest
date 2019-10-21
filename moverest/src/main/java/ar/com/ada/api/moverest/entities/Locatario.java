@@ -42,10 +42,10 @@ public class Locatario
     @OneToMany(mappedBy = "locatario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Reserva> reservas = new ArrayList<Reserva>();
 
-    @OneToMany(mappedBy = "locatario", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "locatario", cascade = CascadeType.ALL)
     private Arrendamiento arrendamiento;
 
-    @OneToMany(mappedBy = "locatario", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "locatario", cascade = CascadeType.ALL)
     private Venta venta;    
 
     public Locatario() {
