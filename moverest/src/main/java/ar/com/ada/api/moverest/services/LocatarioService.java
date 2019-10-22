@@ -65,6 +65,8 @@ public class LocatarioService {
         r.setLocatario(l);
         
         reservaService.save(r);
+        i.setEstado("reservado");
+        inmuebleService.save(i);
 
         return r.getReservaId();   
     }
@@ -79,6 +81,8 @@ public class LocatarioService {
         a.setCosto(i.getPrecio());
 
         arrendamientoService.save(a);
+        i.setEstado("arrendado");
+        inmuebleService.save(i);
 
         return a.getArrendamientoId();
     }
@@ -93,7 +97,9 @@ public class LocatarioService {
         v.setCosto(i.getPrecio());
 
         ventaService.save(v);
-        
+        i.setEstado("vendido");
+        inmuebleService.save(i);
+
         return v.getVentaId();
     }
 }
