@@ -67,11 +67,12 @@ public class UsuarioService {
         return null;
     }
 
-     public void modificaPassword(Integer usuarioId, String password) {
+     public int modificaPassword(Integer usuarioId, String password) {
         Usuario u = this.buscarPorId(usuarioId);
         u.setUsuarioId(usuarioId);
         u.setPassword(password);
         repoUsuario.save(u);
+        return u.getUsuarioId();
 
     }
 }
