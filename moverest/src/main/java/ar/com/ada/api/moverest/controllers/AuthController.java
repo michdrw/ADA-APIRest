@@ -21,17 +21,16 @@ public class AuthController {
     @PostMapping("auth/register")
     public BasicResponse postRegisterUser(@RequestBody RegistrationRequest req) {
 
-
         BasicResponse b = new BasicResponse();
-        int usuarioCreadoId = usuarioService.crearUsuario(req.email, req.password, req.tipo, req.personaData.nombre, req.personaData.edad, req.personaData.tipoIdentificacion, req.personaData.nroIdentificacion);
-        
+        int usuarioCreadoId = usuarioService.crearUsuario(req.email, req.password, req.tipo, req.personaData.nombre,
+                req.personaData.edad, req.personaData.tipoIdentificacion, req.personaData.nroIdentificacion);
 
         b.isOk = true;
         b.message = "Te registraste con exito";
-        b.id = usuarioCreadoId; 
+        b.id = usuarioCreadoId;
 
         return b;
-        
+
     }
 
 }
