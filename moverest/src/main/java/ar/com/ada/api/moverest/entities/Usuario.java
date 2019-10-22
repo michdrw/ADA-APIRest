@@ -2,6 +2,8 @@ package ar.com.ada.api.moverest.entities;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Usuario
  */
@@ -16,6 +18,7 @@ public class Usuario {
     private String username;
     private String password;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Locatario locatario;
 

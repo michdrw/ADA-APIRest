@@ -21,7 +21,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name ="locatario")
-public class Locatario extends Persona {
+public class Locatario
+{
     @Id
     @Column(name = "locatario_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,6 +41,12 @@ public class Locatario extends Persona {
 
     @OneToMany(mappedBy = "locatario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Reserva> reservas = new ArrayList<Reserva>();
+
+    @OneToOne(mappedBy = "locatario", cascade = CascadeType.ALL)
+    private Arrendamiento arrendamiento;
+
+    @OneToOne(mappedBy = "locatario", cascade = CascadeType.ALL)
+    private Venta venta;    
 
     public Locatario() {
     }
@@ -106,6 +113,22 @@ public class Locatario extends Persona {
 
     public void setJuricidad(String juricidad) {
         this.juricidad = juricidad;
+    }
+
+    public Arrendamiento getArrendamiento() {
+        return arrendamiento;
+    }
+
+    public void setArrendamiento(Arrendamiento arrendamiento) {
+        this.arrendamiento = arrendamiento;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
     }
 
     

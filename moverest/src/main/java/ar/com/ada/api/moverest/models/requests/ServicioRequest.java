@@ -1,10 +1,10 @@
 package ar.com.ada.api.moverest.models.requests;
 
 /**
- * EstadoRequest
+ * ServicioRequest
  */
-public class EstadoRequest {
+public class ServicioRequest {
 
+    public int locatarioId;
     public int inmuebleId;
-    public String estado;
 }

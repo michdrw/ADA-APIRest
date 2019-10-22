@@ -1,9 +1,12 @@
 package ar.com.ada.api.moverest.entities;
 
+import javax.persistence.MappedSuperclass;
+
 /**
  * Servicio
  */
 
+@MappedSuperclass
 public abstract class Servicio {
     private double costo;
 

@@ -44,6 +44,7 @@ public class UsuarioService {
         l.setNroIdentificacion(nroIdentificacion);
         l.setEdad(edad);
         l.setUsuario(u);
+        
         save(u);
         locatarioService.save(l);
         }
