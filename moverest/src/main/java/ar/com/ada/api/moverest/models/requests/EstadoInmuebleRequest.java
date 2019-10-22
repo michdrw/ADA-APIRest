@@ -1,7 +1,7 @@
 package ar.com.ada.api.moverest.models.requests;
 
 /**
- * EstadoRequest
+ * EstadoInmuebleRequest
  */
 public class EstadoInmuebleRequest {
 
