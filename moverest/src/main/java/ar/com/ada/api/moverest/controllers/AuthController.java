@@ -1,6 +1,7 @@
 package ar.com.ada.api.moverest.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,11 +37,11 @@ public class AuthController {
     }
 
     @PutMapping("usuarios/{id}/password")
-    public BasicResponse putPassword(@RequestBody PasswordRequest req) throws Exception {
+    public BasicResponse putPassword(@PathVariable int id, @RequestBody PasswordRequest req) throws Exception {
 
         BasicResponse p = new BasicResponse();
 
-        int usuarioId = usuarioService.modificaPassword(req.usuarioId, req.password);
+        int usuarioId = usuarioService.modificaPassword(id, req.password);
 
         p.isOk = true;
         p.message = "Password restablecida.";

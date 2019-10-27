@@ -77,20 +77,13 @@ public class UsuarioService {
 
     public int modificaPassword(Integer usuarioId, String password) {
         String passwordEncriptada;
-        String passwordEnTextoClaroDesencriptado;
-        String passwordEnTextoClaro;
 
         Usuario u = this.buscarPorId(usuarioId);
         u.setUsuarioId(usuarioId);
 
-        passwordEnTextoClaro = password;
-        passwordEncriptada = Crypto.encrypt(passwordEnTextoClaro, u.getUsername());
-        passwordEnTextoClaroDesencriptado = Crypto.decrypt(passwordEncriptada, u.getUsername());
-
-        if (passwordEnTextoClaro.equals(passwordEnTextoClaroDesencriptado)) {
-            u.setPassword(password);
+        passwordEncriptada = Crypto.encrypt(password, u.getUsername());
+        u.setPassword(passwordEncriptada);
             repoUsuario.save(u);
-        }
         return u.getUsuarioId();
 
     }

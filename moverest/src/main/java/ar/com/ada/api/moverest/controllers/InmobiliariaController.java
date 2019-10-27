@@ -34,8 +34,7 @@ public class InmobiliariaController {
 
     @Autowired
     LocatarioService locatarioService;
-
-
+    
 
     @PostMapping("/locadores")
     public BasicResponse postNewLocador(@RequestBody PersonaRequest req)
@@ -74,7 +73,7 @@ public class InmobiliariaController {
     public BasicResponse actualizarEstado(@PathVariable int id, @RequestBody EstadoInmuebleRequest req)
     {
         BasicResponse r = new BasicResponse();
-        int inmuebleModificadoId = inmuebleService.actualizarEstado(req.inmuebleId, req.estado);
+        int inmuebleModificadoId = inmuebleService.actualizarEstado(id, req.estado);
 
         r.isOk = true;
         r.message = "El estado del inmueble ha sido cambiado";
