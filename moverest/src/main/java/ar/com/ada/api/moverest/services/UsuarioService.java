@@ -3,6 +3,7 @@ package ar.com.ada.api.moverest.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.moverest.entities.Inmobiliaria;
@@ -75,6 +76,12 @@ public class UsuarioService {
         return null;
     }
 
+    public Usuario buscarPorUsername(String username) {
+
+        return repoUsuario.findByUsername(username);
+
+    }
+
     public int modificaPassword(Integer usuarioId, String password) {
         String passwordEncriptada;
 
@@ -85,6 +92,16 @@ public class UsuarioService {
         u.setPassword(passwordEncriptada);
             repoUsuario.save(u);
         return u.getUsuarioId();
+    }
+
+    public void login(String username, String password) {
+
+        Usuario u = repoUsuario.findByUsername(username);
+
+        if (u == null || !u.getPassword().equals(Crypto.encrypt(password, u.getUsername()))) {
+
+            throw new BadCredentialsException("Usuario o contraseña invalida");
+        }
 
     }
 }

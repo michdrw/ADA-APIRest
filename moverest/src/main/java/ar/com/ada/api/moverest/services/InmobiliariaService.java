@@ -44,10 +44,8 @@ public class InmobiliariaService {
         l.setNroIdentificacion(nroIdentificacion);
         l.setEdad(edad);
         l.setJuricidad(juricidad);
-        locadorService.save(l);
         Inmobiliaria i = buscarPorId(inmobiliariaId);
         l.setInmobiliaria(i);
-
         locadorService.save(l);
         return l.getLocadorId();
    }

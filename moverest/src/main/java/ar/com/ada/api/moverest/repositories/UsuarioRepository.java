@@ -11,4 +11,6 @@ import ar.com.ada.api.moverest.entities.Usuario;
  */
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     Optional<Usuario> findById(Integer id);
+
+	Usuario findByUsername(String username);
 }
