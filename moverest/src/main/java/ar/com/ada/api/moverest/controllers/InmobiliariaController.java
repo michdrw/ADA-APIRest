@@ -1,8 +1,13 @@
 package ar.com.ada.api.moverest.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,13 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.moverest.entities.Inmueble;
 import ar.com.ada.api.moverest.entities.Locatario;
+import ar.com.ada.api.moverest.entities.Usuario;
 import ar.com.ada.api.moverest.models.requests.EstadoInmuebleRequest;
 import ar.com.ada.api.moverest.models.requests.PersonaRequest;
 import ar.com.ada.api.moverest.models.requests.InmuebleRequest;
 import ar.com.ada.api.moverest.models.responses.BasicResponse;
 import ar.com.ada.api.moverest.services.InmobiliariaService;
 import ar.com.ada.api.moverest.services.InmuebleService;
+import ar.com.ada.api.moverest.services.JWTUserDetailsService;
 import ar.com.ada.api.moverest.services.LocatarioService;
+import ar.com.ada.api.moverest.services.UsuarioService;
 
 /**
  * InmobiliariaController
@@ -34,11 +42,21 @@ public class InmobiliariaController {
 
     @Autowired
     LocatarioService locatarioService;
+
+    @Autowired
+    UsuarioService usuarioService;
+    
     
 
     @PostMapping("/locadores")
-    public BasicResponse postNewLocador(@RequestBody PersonaRequest req)
+    public ResponseEntity<BasicResponse> postNewLocador(@RequestBody PersonaRequest req, Principal principal)
     {
+        Usuario u = usuarioService.buscarPorUsername(((UserDetails) principal).getUsername());
+
+        if (u.getTipoUsuario() != "inmobiliaria"){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
+
         BasicResponse r = new BasicResponse();
         int locadorCreadoId = inmobiliariaService.crearLocador(req.nombre, req.tipoIdentificacion, req.nroIdentificacion, req.edad, req.juricidad, req.inmobiliariaId);
 
@@ -46,11 +64,17 @@ public class InmobiliariaController {
         r.message = "Locador creado con exito";
         r.id = locadorCreadoId;
 
-        return r;
+        return ResponseEntity.ok(r);
     }
 
     @PostMapping("/inmuebles")
-    public BasicResponse postNewInmueble(@RequestBody InmuebleRequest req){
+    public ResponseEntity<BasicResponse> postNewInmueble(@RequestBody InmuebleRequest req, Principal principal){
+
+        Usuario u = usuarioService.buscarPorUsername(((UserDetails) principal).getUsername());
+
+        if (u.getTipoUsuario() != "inmobiliaria"){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
 
         BasicResponse r = new BasicResponse();
         int inmuebleCreadoId = inmuebleService.crearInmueble(req.locadorId, req.ubicacion, req.direccion, req.ambientes, req.amenities, req.instalaciones, req.superficie, req.precio, req.moneda, req.tipoInmueble, req.estado);
@@ -59,34 +83,52 @@ public class InmobiliariaController {
         r.message = "Inmueble publicado con exito";
         r.id = inmuebleCreadoId;
         
-        return r;
+        return ResponseEntity.ok(r);
     }
 
     @GetMapping("/inmuebles")
-    public List<Inmueble> GetInmuebles() {
+    public ResponseEntity<List<Inmueble>> GetInmuebles(Principal principal) {
+
+        Usuario u = usuarioService.buscarPorUsername(((UserDetails) principal).getUsername());
+
+        if (u.getTipoUsuario() != "inmobiliaria"){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
+
         List<Inmueble> li = inmuebleService.getInmuebles();
 
-        return li;
+        return ResponseEntity.ok(li);
     }
 
     @PutMapping("/inmuebles/{id}") 
-    public BasicResponse actualizarEstado(@PathVariable int id, @RequestBody EstadoInmuebleRequest req)
+    public ResponseEntity<BasicResponse> actualizarEstado(@PathVariable int id, @RequestBody EstadoInmuebleRequest req, Principal principal)
     {
+        Usuario u = usuarioService.buscarPorUsername(((UserDetails) principal).getUsername());
+
+        if (u.getTipoUsuario() != "inmobiliaria"){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
+        
         BasicResponse r = new BasicResponse();
         int inmuebleModificadoId = inmuebleService.actualizarEstado(id, req.estado);
 
         r.isOk = true;
         r.message = "El estado del inmueble ha sido cambiado";
         r.id = inmuebleModificadoId;
-        return r;
+        return ResponseEntity.ok(r);
     }
 
     @GetMapping("/locatarios")
-    public List<Locatario> GetLocatarios() {
+    public ResponseEntity<List<Locatario>> GetLocatarios(Authentication authentication, Principal principal)  {
+        
+        Usuario u = usuarioService.buscarPorUsername(((UserDetails) principal).getUsername());
+
+        if (u.getTipoUsuario() != "inmobiliaria"){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
+
         List<Locatario> lo = locatarioService.getLocatarios();
-
-        return lo;
+        return ResponseEntity.ok(lo);
+            
     }
-
-    
 }

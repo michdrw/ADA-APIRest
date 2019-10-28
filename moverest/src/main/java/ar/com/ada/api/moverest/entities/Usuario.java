@@ -17,6 +17,8 @@ public class Usuario {
     private String email;
     private String username;
     private String password;
+    @Column(name = "tipo_usuario")
+    private String tipoUsuario;
 
     @JsonIgnore
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -77,6 +79,11 @@ public class Usuario {
         this.inmobiliaria = inmobiliaria;
     }
 
+    public String getTipoUsuario() {
+        return tipoUsuario;
+    }
 
-    
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
 }

@@ -33,20 +33,13 @@ public class UsuarioService {
             String tipoIdentificacion, int nroIdentificacion) {
 
         String passwordEncriptada;
-        String passwordEnTextoClaroDesencriptado;
-        String passwordEnTextoClaro;
         Usuario u = new Usuario();
         u.setEmail(email);
         u.setUsername(email);
-
-        passwordEnTextoClaro = password;
-        passwordEncriptada = Crypto.encrypt(passwordEnTextoClaro, u.getUsername());
-        passwordEnTextoClaroDesencriptado = Crypto.decrypt(passwordEncriptada, u.getUsername());
-
-        if (passwordEnTextoClaro.equals(passwordEnTextoClaroDesencriptado)) {
-            
+        passwordEncriptada = Crypto.encrypt(password, u.getUsername());
         u.setPassword(passwordEncriptada);
         save(u);
+
             if (tipo == true) {
                 Locatario l = new Locatario();
                 l.setNombre(nombre);
@@ -54,17 +47,21 @@ public class UsuarioService {
                 l.setNroIdentificacion(nroIdentificacion);
                 l.setEdad(edad);
                 l.setUsuario(u);
-
                 save(u);
                 locatarioService.save(l);
+                u.setLocatario(l);
+                u.setTipoUsuario("locatario");
+                save(u);
+                
             } else {
                 Inmobiliaria mr = new Inmobiliaria();
                 mr.setUsuario(u);
                 inmobiliariaService.save(mr);
                 u.setInmobiliaria(mr);
+                u.setTipoUsuario("inmobiliaria");
                 save(u);
             }
-        }
+        
 
         return u.getUsuarioId();
     }
