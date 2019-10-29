@@ -6,8 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +27,6 @@ import ar.com.ada.api.moverest.models.requests.InmuebleRequest;
 import ar.com.ada.api.moverest.models.responses.BasicResponse;
 import ar.com.ada.api.moverest.services.InmobiliariaService;
 import ar.com.ada.api.moverest.services.InmuebleService;
-import ar.com.ada.api.moverest.services.JWTUserDetailsService;
 import ar.com.ada.api.moverest.services.LocatarioService;
 import ar.com.ada.api.moverest.services.UsuarioService;
 
@@ -45,16 +47,19 @@ public class InmobiliariaController {
 
     @Autowired
     UsuarioService usuarioService;
-    
+
     
 
     @PostMapping("/locadores")
     public ResponseEntity<BasicResponse> postNewLocador(@RequestBody PersonaRequest req, Principal principal)
     {
-        Usuario u = usuarioService.buscarPorUsername(((UserDetails) principal).getUsername());
+        UsernamePasswordAuthenticationToken uat = (UsernamePasswordAuthenticationToken) principal;
+        User ud = (User)uat.getPrincipal();
+        String userName = ud.getUsername();
+        Usuario u = usuarioService.buscarPorUsername(userName);
 
-        if (u.getTipoUsuario() != "inmobiliaria"){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        if (!u.getTipoUsuario().equals("inmobiliaria")){
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN); 
         }
 
         BasicResponse r = new BasicResponse();
@@ -70,10 +75,13 @@ public class InmobiliariaController {
     @PostMapping("/inmuebles")
     public ResponseEntity<BasicResponse> postNewInmueble(@RequestBody InmuebleRequest req, Principal principal){
 
-        Usuario u = usuarioService.buscarPorUsername(((UserDetails) principal).getUsername());
+        UsernamePasswordAuthenticationToken uat = (UsernamePasswordAuthenticationToken) principal;
+        User ud = (User)uat.getPrincipal();
+        String userName = ud.getUsername();
+        Usuario u = usuarioService.buscarPorUsername(userName);
 
-        if (u.getTipoUsuario() != "inmobiliaria"){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        if (!u.getTipoUsuario().equals("inmobiliaria")){
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN); 
         }
 
         BasicResponse r = new BasicResponse();
@@ -89,10 +97,13 @@ public class InmobiliariaController {
     @GetMapping("/inmuebles")
     public ResponseEntity<List<Inmueble>> GetInmuebles(Principal principal) {
 
-        Usuario u = usuarioService.buscarPorUsername(((UserDetails) principal).getUsername());
+        UsernamePasswordAuthenticationToken uat = (UsernamePasswordAuthenticationToken) principal;
+        User ud = (User)uat.getPrincipal();
+        String userName = ud.getUsername();
+        Usuario u = usuarioService.buscarPorUsername(userName);
 
-        if (u.getTipoUsuario() != "inmobiliaria"){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        if (!u.getTipoUsuario().equals("inmobiliaria")){
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN); 
         }
 
         List<Inmueble> li = inmuebleService.getInmuebles();
@@ -103,10 +114,13 @@ public class InmobiliariaController {
     @PutMapping("/inmuebles/{id}") 
     public ResponseEntity<BasicResponse> actualizarEstado(@PathVariable int id, @RequestBody EstadoInmuebleRequest req, Principal principal)
     {
-        Usuario u = usuarioService.buscarPorUsername(((UserDetails) principal).getUsername());
+        UsernamePasswordAuthenticationToken uat = (UsernamePasswordAuthenticationToken) principal;
+        User ud = (User)uat.getPrincipal();
+        String userName = ud.getUsername();
+        Usuario u = usuarioService.buscarPorUsername(userName);
 
-        if (u.getTipoUsuario() != "inmobiliaria"){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        if (!u.getTipoUsuario().equals("inmobiliaria")){
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN); 
         }
         
         BasicResponse r = new BasicResponse();
@@ -121,10 +135,13 @@ public class InmobiliariaController {
     @GetMapping("/locatarios")
     public ResponseEntity<List<Locatario>> GetLocatarios(Authentication authentication, Principal principal)  {
         
-        Usuario u = usuarioService.buscarPorUsername(((UserDetails) principal).getUsername());
+        UsernamePasswordAuthenticationToken uat = (UsernamePasswordAuthenticationToken) principal;
+        User ud = (User)uat.getPrincipal();
+        String userName = ud.getUsername();
+        Usuario u = usuarioService.buscarPorUsername(userName);
 
-        if (u.getTipoUsuario() != "inmobiliaria"){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        if (!u.getTipoUsuario().equals("inmobiliaria")){
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN); 
         }
 
         List<Locatario> lo = locatarioService.getLocatarios();
