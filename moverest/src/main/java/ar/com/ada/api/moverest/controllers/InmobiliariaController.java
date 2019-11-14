@@ -127,7 +127,7 @@ public class InmobiliariaController {
         int inmuebleModificadoId = inmuebleService.actualizarEstado(id, req.estado);
 
         r.isOk = true;
-        r.message = "El estado del inmueble ha sido cambiado";
+        r.message = "El estado del inmueble ha sido cambiado!!!";
         r.id = inmuebleModificadoId;
         return ResponseEntity.ok(r);
     }
