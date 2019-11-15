@@ -41,7 +41,7 @@ public class AuthController {
                 req.personaData.edad, req.personaData.tipoIdentificacion, req.personaData.nroIdentificacion);
 
         b.isOk = true;
-        b.message = "Te registraste con exito";
+        b.message = "Te registraste con exito!!!";
         b.id = usuarioCreadoId;
 
         return b;

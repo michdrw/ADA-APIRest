@@ -69,5 +69,4 @@ public class Venta extends Servicio {
     public void setLocatario(Locatario locatario) {
         this.locatario = locatario;
     }
-    
 }
